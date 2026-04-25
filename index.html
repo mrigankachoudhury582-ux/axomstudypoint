@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Axom Study Point - Assam Exam Preparation</title>
+<meta name="description" content="Best exam preparation app for Assam students - Class 9-12, APSC, SLRC, Police, TET and all government job exams."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --red: #e63329;
+  --gold: #f5a623;
+  --dark: #0d0d0d;
+  --dark2: #161616;
+  --dark3: #1f1f1f;
+  --dark4: #2a2a2a;
+  --light: #f0ece4;
+  --light2: #c8bfaf;
+  --green: #2ecc71;
+  --blue: #3498db;
+  --font-main: 'Baloo Da 2', 'Noto Sans Bengali', sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--light);font-family:var(--font-main);min-height:100vh;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--dark2);}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:4px;}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:999;background:rgba(13,13,13,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #2a2a2a;padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.logo-icon{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--red),#b01e15);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 4px 15px rgba(230,51,41,0.4);}
+.logo-text{font-size:17px;font-weight:800;line-height:1.1;}
+.logo-text span{color:var(--gold);display:block;font-size:10px;font-weight:500;letter-spacing:2px;color:var(--light2);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.lang-toggle{background:var(--dark3);border:1px solid var(--dark4);border-radius:20px;padding:4px;display:flex;gap:2px;}
+.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font-main);transition:all 0.2s;}
+.lang-btn.active{background:var(--red);color:white;}
+.lang-btn:not(.active){background:transparent;color:var(--light2);}
+.streak-badge{background:var(--dark3);border:1px solid var(--dark4);border-radius:8px;padding:4px 10px;font-size:12px;}
+
+/* SCREENS */
+.screen{display:none;animation:fadeUp 0.4s ease;}
+.screen.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* HOME */
+.hero{background:linear-gradient(160deg,#1a0a08 0%,#0d0d0d 60%);padding:28px 20px 24px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(230,51,41,0.15),transparent 70%);}
+.hero::after{content:'';position:absolute;bottom:-20px;left:-20px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,0.1),transparent 70%);}
+.hero-tag{display:inline-block;background:rgba(230,51,41,0.15);border:1px solid rgba(230,51,41,0.3);border-radius:20px;padding:4px 14px;font-size:11px;color:var(--red);font-weight:700;letter-spacing:1.5px;margin-bottom:12px;}
+.hero-title{font-size:26px;font-weight:800;line-height:1.25;margin-bottom:6px;}
+.hero-title em{color:var(--gold);font-style:normal;}
+.hero-sub{font-size:13px;color:var(--light2);line-height:1.7;margin-bottom:20px;}
+.stats-row{display:flex;gap:0;background:var(--dark2);border-radius:14px;overflow:hidden;border:1px solid var(--dark4);}
+.stat-box{flex:1;text-align:center;padding:14px 8px;border-right:1px solid var(--dark4);}
+.stat-box:last-child{border-right:none;}
+.stat-num{font-size:22px;font-weight:800;color:var(--gold);}
+.stat-lbl{font-size:10px;color:var(--light2);margin-top:2px;line-height:1.3;}
+
+/* QUOTE */
+.quote-card{margin:16px 20px 0;background:linear-gradient(135deg,#1a1208,#0d0d0d);border:1px solid rgba(245,166,35,0.2);border-left:3px solid var(--gold);border-radius:12px;padding:14px 16px;}
+.quote-text{font-size:13px;color:var(--light2);line-height:1.7;font-style:italic;}
+.quote-assamese{font-size:12px;color:var(--gold);margin-top:6px;font-family:'Noto Sans Bengali',sans-serif;}
+
+/* SECTION TITLE */
+.section-title{padding:20px 20px 12px;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--light2);}
+
+/* CATEGORY CARDS */
+.categories{padding:0 16px;display:flex;flex-direction:column;gap:10px;}
+.cat-card{background:var(--dark2);border:1px solid var(--dark4);border-radius:16px;padding:18px 18px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden;}
+.cat-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--accent);}
+.cat-card:hover{border-color:var(--accent);transform:translateX(4px);}
+.cat-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.cat-info{flex:1;}
+.cat-name{font-size:16px;font-weight:700;margin-bottom:2px;}
+.cat-assamese{font-size:11px;font-family:'Noto Sans Bengali',sans-serif;color:var(--gold);margin-bottom:4px;}
+.cat-desc{font-size:12px;color:var(--light2);}
+.cat-arrow{font-size:18px;color:var(--light2);}
+
+/* QUICK NAV */
+.quick-nav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 16px;margin-top:16px;}
+.quick-btn{background:var(--dark2);border:1px solid var(--dark4);border-radius:14px;padding:16px 8px;text-align:center;cursor:pointer;transition:all 0.2s;}
+.quick-btn:hover{border-color:var(--red);background:rgba(230,51,41,0.05);}
+.quick-btn .q-icon{font-size:24px;margin-bottom:6px;}
+.quick-btn .q-label{font-size:11px;color:var(--light2);}
+
+/* SUBJECTS SCREEN */
+.screen-header{padding:16px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--dark4);}
+.back-btn{background:var(--dark3);border:1px solid var(--dark4);border-radius:10px;padding:8px 14px;font-size:13px;color:var(--light);cursor:pointer;font-family:var(--font-main);}
+.screen-header-title{font-size:18px;font-weight:800;}
+.subjects-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px;}
+.subj-card{background:var(--dark2);border:2px solid transparent;border-radius:14px;padding:18px 14px;text-align:center;cursor:pointer;transition:all 0.2s;}
+.subj-card:hover{transform:scale(1.03);}
+.subj-icon{font-size:30px;margin-bottom:8px;}
+.subj-name{font-size:13px;font-weight:700;margin-bottom:2px;}
+.subj-assamese{font-size:10px;font-family:'Noto Sans Bengali',sans-serif;opacity:0.7;margin-bottom:6px;}
+.subj-count{font-size:11px;color:var(--light2);}
+.subj-start{font-size:11px;color:var(--red);font-weight:600;margin-top:6px;}
+
+/* QUIZ SCREEN */
+.quiz-topbar{padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--dark4);}
+.quiz-progress-wrap{padding:0 20px 16px;padding-top:12px;}
+.progress-bar{height:5px;background:var(--dark4);border-radius:5px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:5px;transition:width 0.4s;}
+.quiz-subject-tag{margin:0 20px 14px;display:inline-block;background:rgba(52,152,219,0.12);border:1px solid rgba(52,152,219,0.25);border-radius:8px;padding:4px 12px;font-size:12px;color:var(--blue);font-weight:600;}
+.question-card{margin:0 20px 16px;background:var(--dark2);border:1px solid var(--dark4);border-radius:16px;padding:22px;}
+.q-text{font-size:16px;font-weight:600;line-height:1.6;}
+.q-assamese{font-size:14px;font-family:'Noto Sans Bengali',sans-serif;color:var(--light2);margin-top:8px;line-height:1.7;}
+.options{padding:0 20px;}
+.opt-btn{width:100%;text-align:left;padding:14px 18px;border-radius:12px;border:2px solid var(--dark4);background:var(--dark2);color:var(--light);font-size:14px;cursor:pointer;transition:all 0.2s;margin-bottom:10px;font-family:var(--font-main);display:flex;align-items:center;gap:12px;line-height:1.5;}
+.opt-btn:hover:not(:disabled){border-color:#4a4a6a;background:var(--dark3);}
+.opt-btn:disabled{cursor:default;}
+.opt-label{width:26px;height:26px;border-radius:50%;background:var(--dark4);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.opt-btn.correct{border-color:var(--green)!important;background:rgba(46,204,113,0.1)!important;color:#4ade80!important;}
+.opt-btn.correct .opt-label{background:var(--green);}
+.opt-btn.wrong{border-color:#e74c3c!important;background:rgba(231,76,60,0.1)!important;color:#f87171!important;}
+.opt-btn.wrong .opt-label{background:#e74c3c;}
+.timer-wrap{display:flex;align-items:center;justify-content:center;position:relative;width:46px;height:46px;}
+.timer-wrap svg{position:absolute;transform:rotate(-90deg);}
+.timer-num{font-size:13px;font-weight:800;position:relative;z-index:1;}
+.explanation-box{margin:0 20px 12px;background:rgba(52,152,219,0.08);border:1px solid rgba(52,152,219,0.2);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--light2);line-height:1.7;}
+.explanation-box strong{color:var(--blue);}
+.explanation-assamese{font-family:'Noto Sans Bengali',sans-serif;color:var(--gold);margin-top:6px;font-size:12px;}
+.action-area{padding:0 20px 20px;display:flex;flex-direction:column;gap:8px;}
+.btn-primary{background:linear-gradient(135deg,var(--red),#c0271e);border:none;color:white;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-main);transition:all 0.25s;width:100%;}
+.btn-primary:hover{transform:scale(1.02);box-shadow:0 6px 20px rgba(230,51,41,0.35);}
+.btn-secondary{background:transparent;border:2px solid var(--dark4);color:var(--light2);padding:12px;border-radius:12px;font-size:13px;cursor:pointer;font-family:var(--font-main);transition:all 0.2s;width:100%;}
+.btn-secondary:hover{border-color:var(--red);color:var(--red);}
+
+/* RESULT */
+.result-wrap{max-width:480px;margin:0 auto;padding:20px;}
+.result-badge{text-align:center;padding:32px 20px;background:var(--dark2);border-radius:20px;margin-bottom:16px;}
+.result-emoji{font-size:60px;margin-bottom:8px;}
+.result-pct{font-size:56px;font-weight:800;line-height:1;}
+.result-label{font-size:14px;color:var(--light2);margin-top:6px;}
+.result-msg{font-size:15px;font-weight:600;margin-top:12px;}
+.review-list{background:var(--dark2);border-radius:16px;padding:16px;margin-bottom:16px;}
+.review-title{font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--light2);margin-bottom:12px;}
+.review-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--dark4);}
+.review-item:last-child{border-bottom:none;}
+.review-icon{font-size:18px;flex-shrink:0;}
+.review-q{font-size:12px;color:var(--light2);}
+.review-correct{font-size:11px;color:var(--green);margin-top:3px;}
+
+/* BADGES */
+.badges-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px;}
+.badge-card{background:var(--dark2);border-radius:14px;padding:18px 12px;text-align:center;border:1px solid;}
+.badge-icon{font-size:36px;margin-bottom:8px;}
+.badge-name{font-size:13px;font-weight:700;margin-bottom:4px;}
+.badge-desc{font-size:11px;color:var(--light2);}
+.badge-earned{font-size:11px;color:var(--green);margin-top:6px;font-weight:600;}
+
+/* TIPS */
+.tips-list{padding:16px;display:flex;flex-direction:column;gap:10px;}
+.tip-card{background:var(--dark2);border:1px solid var(--dark4);border-radius:14px;padding:16px;display:flex;gap:14px;}
+.tip-icon{font-size:26px;flex-shrink:0;}
+.tip-title{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:4px;}
+.tip-text{font-size:12px;color:var(--light2);line-height:1.6;}
+.tip-assamese{font-size:11px;font-family:'Noto Sans Bengali',sans-serif;color:var(--light2);opacity:0.7;margin-top:4px;}
+
+/* LEADERBOARD */
+.lb-list{padding:16px;display:flex;flex-direction:column;gap:8px;}
+.lb-item{background:var(--dark2);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px;border:1px solid var(--dark4);}
+.lb-rank{font-size:20px;width:32px;text-align:center;font-weight:800;}
+.lb-name{flex:1;font-weight:600;}
+.lb-sub{font-size:11px;color:var(--light2);}
+.lb-score{font-size:16px;font-weight:800;color:var(--gold);}
+
+/* PROFILE */
+.profile-wrap{padding:20px;}
+.profile-hero{background:var(--dark2);border-radius:20px;padding:24px;text-align:center;margin-bottom:16px;}
+.profile-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--red),#c0271e);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 12px;}
+.profile-name{font-size:20px;font-weight:800;}
+.profile-sub{font-size:13px;color:var(--light2);margin-bottom:20px;}
+.profile-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.profile-stat{background:var(--dark3);border-radius:12px;padding:12px;text-align:center;}
+.profile-stat-num{font-size:22px;font-weight:800;color:var(--red);}
+.profile-stat-lbl{font-size:10px;color:var(--light2);margin-top:2px;}
+
+/* NEW BADGE POPUP */
+.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;animation:fadeUp 0.3s;}
+.popup-box{background:linear-gradient(135deg,#2a1a00,#1a0a00);border:2px solid var(--gold);border-radius:20px;padding:32px 24px;text-align:center;max-width:280px;width:90%;}
+.popup-icon{font-size:56px;margin-bottom:12px;}
+.popup-title{font-size:18px;font-weight:800;color:var(--gold);margin-bottom:6px;}
+.popup-desc{font-size:13px;color:var(--light2);margin-bottom:20px;}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(13,13,13,0.97);backdrop-filter:blur(12px);border-top:1px solid var(--dark4);display:flex;height:60px;z-index:998;}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:3px;transition:all 0.2s;}
+.nav-item.active .nav-icon{color:var(--red);}
+.nav-item.active .nav-lbl{color:var(--red);}
+.nav-icon{font-size:20px;color:var(--light2);}
+.nav-lbl{font-size:9px;color:var(--light2);font-weight:600;letter-spacing:0.5px;}
+
+.page-pad{padding-bottom:76px;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo" onclick="goScreen('home')">
+    <div class="logo-icon">📚</div>
+    <div class="logo-text">Axom Study Point<span>EXAM PREPARATION</span></div>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-as" onclick="setLang('as')">অসমীয়া</button>
+    </div>
+    <div class="streak-badge">🔥 <span id="streak-num">0</span></div>
+  </div>
+</div>
+
+<!-- HOME SCREEN -->
+<div id="screen-home" class="screen active page-pad">
+  <div class="hero">
+    <div class="hero-tag" id="hero-tag">ASSAM'S #1 EXAM PREP APP</div>
+    <div class="hero-title" id="hero-title">Crack Your Exams with <em>Axom Study Point</em></div>
+    <div class="hero-sub" id="hero-sub">Class 9-12 • APSC • SLRC • Police • TET • All Govt. Job Exams</div>
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-num" id="stat-q">0</div><div class="stat-lbl" id="stat-q-lbl">Questions<br/>Answered</div></div>
+      <div class="stat-box"><div class="stat-num" id="stat-quiz">0</div><div class="stat-lbl" id="stat-quiz-lbl">Quizzes<br/>Done</div></div>
+      <div class="stat-box"><div class="stat-num" id="stat-badge">0</div><div class="stat-lbl" id="stat-badge-lbl">Badges<br/>Earned</div></div>
+    </div>
+  </div>
+
+  <div class="quote-card">
+    <div class="quote-text" id="quote-text">"Success comes to those who work hard every single day."</div>
+    <div class="quote-assamese" id="quote-assamese">"সাফল্য তেওঁলোকৰ ওচৰলৈ আহে যিয়ে প্ৰতিদিনে কঠোৰ পৰিশ্ৰম কৰে।"</div>
+  </div>
+
+  <div class="section-title" id="choose-cat-lbl">CHOOSE CATEGORY • শ্ৰেণী বাছনি কৰক</div>
+
+  <div class="categories">
+    <div class="cat-card" style="--accent:#e63329" onclick="goSubjects('9-10')">
+      <div class="cat-icon" style="background:rgba(230,51,41,0.12)">📐</div>
+      <div class="cat-info">
+        <div class="cat-name" id="cat1-name">Class 9 - 10</div>
+        <div class="cat-assamese">নৱম - দশম শ্ৰেণী</div>
+        <div class="cat-desc" id="cat1-desc">Math, Science, Social, English, Assamese, GK</div>
+      </div>
+      <div class="cat-arrow">›</div>
+    </div>
+    <div class="cat-card" style="--accent:#3498db" onclick="goSubjects('11-12')">
+      <div class="cat-icon" style="background:rgba(52,152,219,0.12)">🔬</div>
+      <div class="cat-info">
+        <div class="cat-name" id="cat2-name">Class 11 - 12</div>
+        <div class="cat-assamese">একাদশ - দ্বাদশ শ্ৰেণী</div>
+        <div class="cat-desc" id="cat2-desc">Physics, Chemistry, Biology, Math, Economics</div>
+      </div>
+      <div class="cat-arrow">›</div>
+    </div>
+    <div class="cat-card" style="--accent:#f5a623" onclick="goSubjects('govt')">
+      <div class="cat-icon" style="background:rgba(245,166,35,0.12)">🏛️</div>
+      <div class="cat-info">
+        <div class="cat-name" id="cat3-name">Govt. Job Preparation</div>
+        <div class="cat-assamese">চৰকাৰী চাকৰি প্ৰস্তুতি</div>
+        <div class="cat-desc" id="cat3-desc">APSC, SLRC, Police, TET, Constable</div>
+      </div>
+      <div class="cat-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="quick-nav">
+    <div class="quick-btn" onclick="goScreen('leaderboard')">
+      <div class="q-icon">🏆</div>
+      <div class="q-label" id="qlbl1">Leaderboard</div>
+    </div>
+    <div class="quick-btn" onclick="goScreen('badges')">
+      <div class="q-icon">🎖️</div>
+      <div class="q-label" id="qlbl2">My Badges</div>
+    </div>
+    <div class="quick-btn" onclick="goScreen('tips')">
+      <div class="q-icon">💡</div>
+      <div class="q-label" id="qlbl3">Exam Tips</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUBJECTS SCREEN -->
+<div id="screen-subjects" class="screen page-pad">
+  <div class="screen-header">
+    <button class="back-btn" onclick="goScreen('home')">← Back</button>
+    <div class="screen-header-title" id="subjects-title">Subjects</div>
+  </div>
+  <div class="subjects-grid" id="subjects-grid"></div>
+</div>
+
+<!-- QUIZ SCREEN -->
+<div id="screen-quiz" class="screen page-pad">
+  <div class="quiz-topbar">
+    <button class="back-btn" onclick="goScreen('subjects')">✕ Exit</button>
+    <div style="font-size:13px;color:var(--light2)">Q <span id="q-num" style="color:var(--red);font-weight:800">1</span> / <span id="q-total">5</span></div>
+    <div class="timer-wrap">
+      <svg width="46" height="46" viewBox="0 0 46 46">
+        <circle cx="23" cy="23" r="19" fill="none" stroke="#2a2a2a" stroke-width="4"/>
+        <circle id="timer-circle" cx="23" cy="23" r="19" fill="none" stroke="#2ecc71" stroke-width="4"
+          stroke-dasharray="119.4" stroke-dashoffset="0" stroke-linecap="round"/>
+      </svg>
+      <div class="timer-num" id="timer-num">30</div>
+    </div>
+  </div>
+  <div class="quiz-progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="quiz-progress" style="width:0%"></div></div>
+  </div>
+  <div class="quiz-subject-tag" id="quiz-subject-tag">Subject</div>
+  <div class="question-card">
+    <div class="q-text" id="q-text">Question here</div>
+    <div class="q-assamese" id="q-assamese"></div>
+  </div>
+  <div class="options" id="options-wrap"></div>
+  <div class="explanation-box" id="explanation-box" style="display:none">
+    <strong>💡 Explanation:</strong> <span id="exp-text"></span>
+    <div class="explanation-assamese" id="exp-assamese"></div>
+  </div>
+  <div class="action-area" id="action-area" style="display:none">
+    <button class="btn-secondary" id="show-exp-btn" onclick="showExplanation()">💡 Show Explanation • ব্যাখ্যা দেখুৱাওক</button>
+    <button class="btn-primary" id="next-btn" onclick="nextQuestion()">Next Question →</button>
+  </div>
+</div>
+
+<!-- RESULT SCREEN -->
+<div id="screen-result" class="screen page-pad">
+  <div class="result-wrap">
+    <div class="result-badge" id="result-badge">
+      <div class="result-emoji" id="result-emoji">🏆</div>
+      <div class="result-pct" id="result-pct">0%</div>
+      <div class="result-label" id="result-label">0 / 5 Correct</div>
+      <div class="result-msg" id="result-msg">Great job!</div>
+    </div>
+    <div class="review-list">
+      <div class="review-title">QUESTION REVIEW • প্ৰশ্ন পৰ্যালোচনা</div>
+      <div id="review-items"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <button class="btn-primary" id="retry-btn" onclick="retryQuiz()">🔄 Retry Quiz • পুনৰায় চেষ্টা কৰক</button>
+      <button class="btn-secondary" onclick="goScreen('subjects')">← Back to Subjects</button>
+      <button class="btn-secondary" onclick="goScreen('home')">🏠 Home • গৃহ</button>
+    </div>
+  </div>
+</div>
+
+<!-- BADGES SCREEN -->
+<div id="screen-badges" class="screen page-pad">
+  <div class="screen-header">
+    <button class="back-btn" onclick="goScreen('home')">← Back</button>
+    <div class="screen-header-title">My Badges • মোৰ বেজসমূহ</div>
+  </div>
+  <div class="badges-grid" id="badges-grid"></div>
+</div>
+
+<!-- TIPS SCREEN -->
+<div id="screen-tips" class="screen page-pad">
+  <div class="screen-header">
+    <button class="back-btn" onclick="goScreen('home')">← Back</button>
+    <div class="screen-header-title">Exam Tips • পৰীক্ষাৰ টিপছ</div>
+  </div>
+  <div class="tips-list" id="tips-list"></div>
+</div>
+
+<!-- LEADERBOARD SCREEN -->
+<div id="screen-leaderboard" class="screen page-pad">
+  <div class="screen-header">
+    <button class="back-btn" onclick="goScreen('home')">← Back</button>
+    <div class="screen-header-title">Leaderboard • শীৰ্ষ তালিকা</div>
+  </div>
+  <div class="lb-list" id="lb-list"></div>
+</div>
+
+<!-- PROFILE SCREEN -->
+<div id="screen-profile" class="screen page-pad">
+  <div class="screen-header">
+    <button class="back-btn" onclick="goScreen('home')">← Back</button>
+    <div class="screen-header-title">My Profile • মোৰ প্ৰ'ফাইল</div>
+  </div>
+  <div class="profile-wrap">
+    <div class="profile-hero">
+      <div class="profile-avatar">🎓</div>
+      <div class="profile-name">Student</div>
+      <div class="profile-sub">Axom Study Point Member</div>
+      <div class="profile-stats">
+        <div class="profile-stat"><div class="profile-stat-num" id="p-q">0</div><div class="profile-stat-lbl">Questions</div></div>
+        <div class="profile-stat"><div class="profile-stat-num" id="p-quiz">0</div><div class="profile-stat-lbl">Quizzes</div></div>
+        <div class="profile-stat"><div class="profile-stat-num" id="p-badge">0</div><div class="profile-stat-lbl">Badges</div></div>
+      </div>
+    </div>
+    <button class="btn-secondary" style="margin-top:10px;color:#e74c3c;border-color:rgba(231,76,60,0.3)" onclick="resetProgress()">🗑️ Reset All Progress</button>
+  </div>
+</div>
+
+<!-- BADGE POPUP -->
+<div class="popup-overlay" id="badge-popup" style="display:none">
+  <div class="popup-box">
+    <div class="popup-icon" id="popup-icon">🏆</div>
+    <div class="popup-title">Badge Earned! • বেজ পোৱা গ'ল!</div>
+    <div class="popup-desc" id="popup-desc">You earned a new badge!</div>
+    <button class="btn-primary" onclick="closePopup()">Awesome! 🎉</button>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="nav-item active" id="nav-home" onclick="goScreen('home')">
+    <div class="nav-icon">🏠</div><div class="nav-lbl">HOME</div>
+  </div>
+  <div class="nav-item" id="nav-leaderboard" onclick="goScreen('leaderboard')">
+    <div class="nav-icon">🏆</div><div class="nav-lbl">RANK</div>
+  </div>
+  <div class="nav-item" id="nav-badges" onclick="goScreen('badges')">
+    <div class="nav-icon">🎖️</div><div class="nav-lbl">BADGES</div>
+  </div>
+  <div class="nav-item" id="nav-tips" onclick="goScreen('tips')">
+    <div class="nav-icon">💡</div><div class="nav-lbl">TIPS</div>
+  </div>
+  <div class="nav-item" id="nav-profile" onclick="goScreen('profile')">
+    <div class="nav-icon">👤</div><div class="nav-lbl">PROFILE</div>
+  </div>
+</div>
+
+<script>
+// ==================== DATA ====================
+const LANG = {
+  en: {
+    heroTag: "ASSAM'S #1 EXAM PREP APP",
+    heroTitle: 'Crack Your Exams with <em>Axom Study Point</em>',
+    heroSub: 'Class 9-12 • APSC • SLRC • Police • TET • All Govt. Job Exams',
+    statQlbl: 'Questions\nAnswered', statQuizlbl: 'Quizzes\nDone', statBadgelbl: 'Badges\nEarned',
+    chooseCat: 'CHOOSE CATEGORY • শ্ৰেণী বাছনি কৰক',
+    cat1: 'Class 9 - 10', cat1desc: 'Math, Science, Social, English, Assamese, GK',
+    cat2: 'Class 11 - 12', cat2desc: 'Physics, Chemistry, Biology, Math, Economics',
+    cat3: 'Govt. Job Preparation', cat3desc: 'APSC, SLRC, Police, TET, Constable',
+    qlbl1:'Leaderboard', qlbl2:'My Badges', qlbl3:'Exam Tips',
+    quoteText: '"Success comes to those who work hard every single day."',
+    quoteAs: '"সাফল্য তেওঁলোকৰ ওচৰলৈ আহে যিয়ে প্ৰতিদিনে কঠোৰ পৰিশ্ৰম কৰে।"',
+  },
+  as: {
+    heroTag: "অসমৰ #1 পৰীক্ষা প্ৰস্তুতি এপ",
+    heroTitle: '<em>Axom Study Point</em>ৰ সৈতে পৰীক্ষা ক্ৰেক কৰক',
+    heroSub: 'নৱম-দ্বাদশ শ্ৰেণী • APSC • SLRC • আৰক্ষী • TET',
+    statQlbl: 'প্ৰশ্ন\nউত্তৰ দিয়া', statQuizlbl: 'কুইজ\nসম্পন্ন', statBadgelbl: 'বেজ\nঅৰ্জিত',
+    chooseCat: 'শ্ৰেণী বাছনি কৰক',
+    cat1: 'নৱম - দশম শ্ৰেণী', cat1desc: 'গণিত, বিজ্ঞান, সমাজ, ইংৰাজী, অসমীয়া, সাধাৰণ জ্ঞান',
+    cat2: 'একাদশ - দ্বাদশ শ্ৰেণী', cat2desc: 'পদাৰ্থবিজ্ঞান, ৰসায়ন, জীৱবিজ্ঞান, গণিত, অৰ্থনীতি',
+    cat3: 'চৰকাৰী চাকৰি প্ৰস্তুতি', cat3desc: 'APSC, SLRC, আৰক্ষী, TET, কনষ্টেবল',
+    qlbl1:'শীৰ্ষ তালিকা', qlbl2:'মোৰ বেজ', qlbl3:'পৰীক্ষাৰ টিপছ',
+    quoteText: '"প্ৰতিদিনে কঠোৰ পৰিশ্ৰম কৰিলেহে সাফল্য পোৱা যায়।"',
+    quoteAs: '"Success comes to those who work hard every single day."',
+  }
+};
+
+const subjects = {
+  '9-10': [
+    {id:'math',name:'Mathematics',as:'গণিত',icon:'🔢',color:'#e63329',count:5},
+    {id:'science',name:'Science',as:'বিজ্ঞান',icon:'🧪',color:'#3498db',count:5},
+    {id:'social',name:'Social Science',as:'সমাজ বিজ্ঞান',icon:'🌍',color:'#2ecc71',count:5},
+    {id:'english',name:'English',as:'ইংৰাজী',icon:'📝',color:'#9b59b6',count:5},
+    {id:'assamese',name:'Assamese',as:'অসমীয়া',icon:'অ',color:'#f39c12',count:5},
+    {id:'gk',name:'General Knowledge',as:'সাধাৰণ জ্ঞান',icon:'🌐',color:'#1abc9c',count:5},
+  ],
+  '11-12': [
+    {id:'physics',name:'Physics',as:'পদাৰ্থবিজ্ঞান',icon:'⚛️',color:'#3498db',count:5},
+    {id:'chemistry',name:'Chemistry',as:'ৰসায়ন বিজ্ঞান',icon:'🧬',color:'#e74c3c',count:5},
+    {id:'biology',name:'Biology',as:'জীৱবিজ্ঞান',icon:'🌿',color:'#2ecc71',count:5},
+    {id:'math',name:'Mathematics',as:'গণিত',icon:'🔢',color:'#e63329',count:5},
+    {id:'economics',name:'Economics',as:'অৰ্থনীতি',icon:'💰',color:'#f5a623',count:5},
+    {id:'polsci',name:'Political Science',as:'ৰাজনীতি বিজ্ঞান',icon:'⚖️',color:'#9b59b6',count:5},
+  ],
+  'govt': [
+    {id:'assam_gk',name:'Assam GK',as:'অসম সাধাৰণ জ্ঞান',icon:'🏔️',color:'#e63329',count:5},
+    {id:'current',name:'Current Affairs',as:'বৰ্তমান বিষয়সমূহ',icon:'📰',color:'#3498db',count:5},
+    {id:'aptitude',name:'Quantitative Aptitude',as:'পৰিমাণগত যোগ্যতা',icon:'📊',color:'#2ecc71',count:5},
+    {id:'reasoning',name:'Reasoning',as:'যুক্তি',icon:'🧩',color:'#f5a623',count:5},
+    {id:'computer',name:'Computer Awareness',as:'কম্পিউটাৰ জ্ঞান',icon:'💻',color:'#9b59b6',count:5},
+    {id:'gk',name:'General Knowledge',as:'সাধাৰণ জ্ঞান',icon:'🌐',color:'#1abc9c',count:5},
+  ]
+};
+
+const questions = {
+  math: [
+    {q:'If 3x + 7 = 22, what is x?',as:'যদি 3x + 7 = 22, তেন্তে x কিমান?',opts:['3','5','7','4'],optsAs:['৩','৫','৭','৪'],ans:1,exp:'3x = 15, so x = 5',expAs:'3x = 15, সেয়েহে x = 5'},
+    {q:'What is √144?',as:'√144 কিমান?',opts:['11','12','13','14'],optsAs:['১১','১২','১৩','১৪'],ans:1,exp:'12 × 12 = 144',expAs:'12 × 12 = 144'},
+    {q:'What is the LCM of 12 and 18?',as:'12 আৰু 18ৰ LCM কিমান?',opts:['6','36','72','24'],optsAs:['৬','৩৬','৭২','২৪'],ans:1,exp:'LCM(12,18) = 36',expAs:'LCM(12,18) = 36'},
+    {q:'Area of rectangle with length 8cm and width 5cm?',as:'8cm দৈৰ্ঘ্য আৰু 5cm প্ৰস্থৰ আয়তক্ষেত্ৰৰ মাটিকালি?',opts:['30 cm²','35 cm²','40 cm²','45 cm²'],optsAs:['৩০','৩৫','৪০','৪৫'],ans:2,exp:'Area = l×b = 8×5 = 40 cm²',expAs:'মাটিকালি = দৈৰ্ঘ্য × প্ৰস্থ = 8×5 = 40 cm²'},
+    {q:'If a triangle has angles 60° and 80°, the third angle is?',as:'এটা ত্ৰিভুজৰ কোণ 60° আৰু 80° হলে তৃতীয় কোণটো কিমান?',opts:['30°','40°','50°','60°'],optsAs:['৩০°','৪০°','৫০°','৬০°'],ans:1,exp:'180 - 60 - 80 = 40°',expAs:'180 - 60 - 80 = 40°'},
+  ],
+  science: [
+    {q:'What is the chemical symbol for water?',as:'পানীৰ ৰাসায়নিক প্ৰতীক কি?',opts:['O2','H2O','CO2','NaCl'],optsAs:['O2','H2O','CO2','NaCl'],ans:1,exp:'Water is H₂O — 2 hydrogen atoms and 1 oxygen atom.',expAs:'পানী H₂O — 2টা হাইড্ৰ'জেন পৰমাণু আৰু 1টা অক্সিজেন পৰমাণু।'},
+    {q:'Which organ pumps blood in the human body?',as:'মানৱ শৰীৰত কোনটো অংগই তেজ পাম্প কৰে?',opts:['Liver','Kidney','Brain','Heart'],optsAs:['যকৃত','বৃক্ক','মগজু','হৃদয়'],ans:3,exp:'The heart pumps blood throughout the body.',expAs:'হৃদয়ে সমগ্ৰ শৰীৰলৈ তেজ পাম্প কৰে।'},
+    {q:'What is the SI unit of force?',as:'বলৰ SI একক কি?',opts:['Watt','Joule','Newton','Pascal'],optsAs:['ৱাট','জুল','নিউটন','পাস্কেল'],ans:2,exp:'The SI unit of force is Newton (N).',expAs:'বলৰ SI একক হৈছে নিউটন (N)।'},
+    {q:'Photosynthesis occurs in which part of the plant?',as:'উদ্ভিদৰ কোন অংশত সালোক সংশ্লেষণ হয়?',opts:['Root','Stem','Leaf','Flower'],optsAs:['মূল','কাণ্ড','পাত','ফুল'],ans:2,exp:'Photosynthesis occurs in leaves, in the chloroplasts.',expAs:'সালোক সংশ্লেষণ পাতত, ক্লোৰ'প্লাষ্টত হয়।'},
+    {q:'What is the speed of light?',as:'পোহৰৰ গতিবেগ কিমান?',opts:['3×10⁶ m/s','3×10⁸ m/s','3×10¹⁰ m/s','3×10⁴ m/s'],optsAs:['3×10⁶ m/s','3×10⁸ m/s','3×10¹⁰ m/s','3×10⁴ m/s'],ans:1,exp:'Speed of light = 3×10⁸ m/s',expAs:'পোহৰৰ গতিবেগ = 3×10⁸ m/s'},
+  ],
+  gk: [
+    {q:'What is the capital of Assam?',as:'অসমৰ ৰাজধানী কি?',opts:['Guwahati','Dispur','Jorhat','Silchar'],optsAs:['গুৱাহাটী','দিছপুৰ','যোৰহাট','শিলচৰ'],ans:1,exp:'Dispur is the capital of Assam.',expAs:'দিছপুৰ অসমৰ ৰাজধানী।'},
+    {q:'Kaziranga National Park is famous for?',as:'কাজিৰঙা ৰাষ্ট্ৰীয় উদ্যান কিহৰ বাবে বিখ্যাত?',opts:['Tigers','Elephants','One-horned Rhinoceros','Snow Leopards'],optsAs:['বাঘ','হাতী','এশিঙীয়া গঁড়','হিম চিতা'],ans:2,exp:'Kaziranga is home to the Indian One-horned Rhinoceros.',expAs:'কাজিৰঙাত ভাৰতীয় এশিঙীয়া গঁড় আছে।'},
+    {q:'Which river is known as the lifeline of Assam?',as:'কোন নদীক অসমৰ জীৱনৰেখা বোলা হয়?',opts:['Barak','Subansiri','Brahmaputra','Kopili'],optsAs:['বৰাক','শুৱনশিৰি','ব্ৰহ্মপুত্ৰ','কপিলী'],ans:2,exp:'The Brahmaputra river is the lifeline of Assam.',expAs:'ব্ৰহ্মপুত্ৰ নদী অসমৰ জীৱনৰেখা।'},
+    {q:'Bihu festival is celebrated in which state?',as:'বিহু উৎসৱ কোন ৰাজ্যত পালন কৰা হয়?',opts:['Meghalaya','Assam','Tripura','Mizoram'],optsAs:['মেঘালয়','অসম','ত্ৰিপুৰা','মিজোৰাম'],ans:1,exp:'Bihu is the main festival of Assam.',expAs:'বিহু অসমৰ প্ৰধান উৎসৱ।'},
+    {q:'India became a Republic on?',as:'ভাৰত কেতিয়া প্ৰজাতন্ত্ৰ হৈছিল?',opts:['15 Aug 1947','26 Jan 1950','26 Nov 1949','2 Oct 1869'],optsAs:['15 আগষ্ট 1947','26 জানুৱাৰী 1950','26 নৱেম্বৰ 1949','2 অক্টোবৰ 1869'],ans:1,exp:'India became a Republic on 26 January 1950.',expAs:'ভাৰত 26 জানুৱাৰী 1950 তাৰিখে প্ৰজাতন্ত্ৰ হৈছিল।'},
+  ],
+  social: [
+    {q:'The Indus Valley Civilization is also called?',as:'সিন্ধু উপত্যকা সভ্যতাক কি বুলিও কোৱা হয়?',opts:['Vedic Civilization','Harappan Civilization','Aryan Civilization','Dravidian Civilization'],optsAs:['বৈদিক সভ্যতা','হাৰাপান সভ্যতা','আৰ্য সভ্যতা','দ্ৰাবিড় সভ্যতা'],ans:1,exp:'It is called Harappan Civilization after the major site Harappa.',expAs:'হাৰাপা স্থানৰ নামেৰে ইয়াক হাৰাপান সভ্যতা বোলা হয়।'},
+    {q:'Which mountain range separates India from China?',as:'কোনটো পৰ্বতমালাই ভাৰতক চীনৰ পৰা পৃথক কৰে?',opts:['Western Ghats','Aravalli','Himalayas','Vindhyas'],optsAs:['পশ্চিম ঘাট','আৰাৱল্লী','হিমালয়','বিন্ধ্য'],ans:2,exp:'The Himalayan mountain range forms the boundary.',expAs:'হিমালয় পৰ্বতমালাই সীমা গঠন কৰে।'},
+    {q:'Dandi March was led by?',as:'ডাণ্ডি যাত্ৰাৰ নেতৃত্ব কোনে দিছিল?',opts:['Bhagat Singh','Jawaharlal Nehru','Mahatma Gandhi','Subhash Chandra Bose'],optsAs:['ভগৎ সিং','জৱাহৰলাল নেহৰু','মহাত্মা গান্ধী','সুভাষ চন্দ্ৰ বসু'],ans:2,exp:'Mahatma Gandhi led the Dandi March in 1930.',expAs:'মহাত্মা গান্ধীয়ে 1930 চনত ডাণ্ডি যাত্ৰাৰ নেতৃত্ব দিছিল।'},
+    {q:'What does GDP stand for?',as:'GDP মানে কি?',opts:['Gross Domestic Product','General Development Plan','Government Domestic Policy','Gross Development Progress'],optsAs:['মুঠ ঘৰুৱা উৎপাদন','সাধাৰণ উন্নয়ন পৰিকল্পনা','চৰকাৰী নীতি','উন্নয়ন অগ্ৰগতি'],ans:0,exp:'GDP = Gross Domestic Product.',expAs:'GDP = Gross Domestic Product (মুঠ ঘৰুৱা উৎপাদন)।'},
+    {q:'Who wrote the Indian National Anthem?',as:'ভাৰতীয় ৰাষ্ট্ৰীয় সংগীত কোনে লিখিছিল?',opts:['Bankim Chandra','Rabindranath Tagore','Subhash Bose','Jawaharlal Nehru'],optsAs:['বঙ্কিম চন্দ্ৰ','ৰবীন্দ্ৰনাথ ঠাকুৰ','সুভাষ বসু','নেহৰু'],ans:1,exp:'Rabindranath Tagore wrote Jana Gana Mana.',expAs:'ৰবীন্দ্ৰনাথ ঠাকুৰে জন গণ মন লিখিছিল।'},
+  ],
+  english: [
+    {q:'Choose the correct sentence:',as:'শুদ্ধ বাক্যটো বাছনি কৰক:',opts:["She don't like tea","She doesn't likes tea","She doesn't like tea","She not like tea"],optsAs:["She don't like tea","She doesn't likes tea","She doesn't like tea","She not like tea"],ans:2,exp:"'She doesn't like tea' is correct — third person singular uses doesn't + base verb.",expAs:"'She doesn't like tea' শুদ্ধ — তৃতীয় পুৰুষ একবচনত doesn't + মূল ক্ৰিয়া ব্যৱহাৰ হয়।"},
+    {q:"Synonym of 'Brave'?",as:"'সাহসী'ৰ প্ৰতিশব্দ কি?",opts:['Coward','Fearful','Courageous','Timid'],optsAs:['কাপুৰুষ','ভয়ংকৰ','সাহসী','ভীৰু'],ans:2,exp:'Courageous is a synonym of Brave.',expAs:'Courageous মানে সাহসী।'},
+    {q:"Opposite of 'Ancient'?",as:"'প্ৰাচীন'ৰ বিপৰীত শব্দ?",opts:['Old','Modern','Antique','Historical'],optsAs:['পুৰণি','আধুনিক','প্ৰাচীন','ঐতিহাসিক'],ans:1,exp:'The antonym of Ancient is Modern.',expAs:'Ancient ৰ বিপৰীত শব্দ Modern।'},
+    {q:'Fill in: She __ studying for 3 hours.',as:'খালী ঠাই পূৰণ কৰক: She __ studying for 3 hours.',opts:['is','was','has been','will'],optsAs:['is','was','has been','will'],ans:2,exp:"Present perfect continuous: 'has been studying'",expAs:"Present perfect continuous: 'has been studying'"},
+    {q:'Which is a proper noun?',as:'কোনটো সংজ্ঞাবাচক বিশেষ্য?',opts:['City','River','Guwahati','Mountain'],optsAs:['নগৰ','নদী','গুৱাহাটী','পৰ্বত'],ans:2,exp:'Guwahati is a proper noun — specific name of a place.',expAs:'গুৱাহাটী এটা সংজ্ঞাবাচক বিশেষ্য — এটা নিৰ্দিষ্ট স্থানৰ নাম।'},
+  ],
+  assamese: [
+    {q:'Who is known as the father of Assamese literature?',as:'অসমীয়া সাহিত্যৰ জনক কোন?',opts:['Hemchandra Barua','Srimanta Sankardeva','Madhavdev','Lachit Borphukan'],optsAs:['হেমচন্দ্ৰ বৰুৱা','শ্ৰীমন্ত শংকৰদেৱ','মাধৱদেৱ','লাচিত বৰফুকন'],ans:1,exp:'Srimanta Sankardeva is the father of Assamese literature.',expAs:'শ্ৰীমন্ত শংকৰদেৱ অসমীয়া সাহিত্যৰ জনক।'},
+    {q:"What is the meaning of 'Bihu'?",as:"'বিহু' শব্দৰ অৰ্থ কি?",opts:['River','Festival','Joy','Harvest'],optsAs:['নদী','উৎসৱ','আনন্দ','শস্য'],ans:2,exp:"Bihu literally means 'joy' or celebration.",expAs:"বিহু শব্দৰ আক্ষৰিক অৰ্থ আনন্দ বা উদযাপন।"},
+    {q:'Assamese script is derived from which script?',as:'অসমীয়া লিপি কোন লিপিৰ পৰা উদ্ভৱ হৈছে?',opts:['Devanagari','Bengali','Brahmi','Tamil'],optsAs:['দেৱনাগৰী','বাংলা','ব্ৰাহ্মী','তামিল'],ans:2,exp:'Assamese script is derived from the ancient Brahmi script.',expAs:'অসমীয়া লিপি প্ৰাচীন ব্ৰাহ্মী লিপিৰ পৰা উদ্ভৱ হৈছে।'},
+    {q:'Which is the largest river island in the world, located in Assam?',as:'বিশ্বৰ সৰ্ববৃহৎ নদী দ্বীপটো কোনটো?',opts:['Majuli','Umananda','Peacock Island','Nimati'],optsAs:['মাজুলী','উমানন্দ','ময়ূৰ দ্বীপ','নিমাতী'],ans:0,exp:'Majuli is the largest river island in the world.',expAs:'মাজুলী বিশ্বৰ সৰ্ববৃহৎ নদী দ্বীপ।'},
+    {q:'Who was the hero of the Battle of Saraighat?',as:'সৰাইঘাটৰ যুদ্ধৰ বীৰ কোন আছিল?',opts:['Chilarai','Lachit Borphukan','Sukhrungphaa','Rudra Singha'],optsAs:['চিলাৰায়','লাচিত বৰফুকন','সুখ্ৰুংফা','ৰুদ্ৰ সিংহ'],ans:1,exp:'Lachit Borphukan led the Ahom forces at the Battle of Saraighat.',expAs:'লাচিত বৰফুকনে সৰাইঘাটৰ যুদ্ধত আহোম বাহিনীৰ নেতৃত্ব দিছিল।'},
+  ],
+  physics: [
+    {q:"Newton's First Law is also known as?",as:"নিউটনৰ প্ৰথম সূত্ৰক কি বুলিও কোৱা হয়?",opts:['Law of Gravitation','Law of Inertia','Law of Motion','Law of Energy'],optsAs:['মহাকৰ্ষণ সূত্ৰ','জড়তাৰ সূত্ৰ','গতিৰ সূত্ৰ','শক্তিৰ সূত্ৰ'],ans:1,exp:"Newton's First Law is called the Law of Inertia.",expAs:"নিউটনৰ প্ৰথম সূত্ৰক জড়তাৰ সূত্ৰ বোলা হয়।"},
+    {q:'What is the unit of electric current?',as:'বৈদ্যুতিক প্ৰবাহৰ একক কি?',opts:['Volt','Watt','Ampere','Ohm'],optsAs:['ভোল্ট','ৱাট','এম্পিয়াৰ','ওহম'],ans:2,exp:'Electric current is measured in Amperes (A).',expAs:'বৈদ্যুতিক প্ৰবাহ এম্পিয়াৰ (A)ত জোখা হয়।'},
+    {q:'Which mirror is used in vehicle rear-view mirrors?',as:'গাড়ীৰ পিছৰ দৃশ্য দপদপীত কোন দাপোণ ব্যৱহাৰ হয়?',opts:['Concave','Convex','Plane','Parabolic'],optsAs:['অবতল','উত্তল','সমতল','পৰাবৈলিক'],ans:1,exp:'Convex mirrors give a wider field of view.',expAs:'উত্তল দাপোণে বহল দৃশ্যক্ষেত্ৰ দিয়ে।'},
+    {q:'What is the frequency of AC supply in India?',as:'ভাৰতত AC সৰবৰাহৰ কম্পাঙ্ক কিমান?',opts:['50 Hz','60 Hz','100 Hz','25 Hz'],optsAs:['50 Hz','60 Hz','100 Hz','25 Hz'],ans:0,exp:'India uses 50 Hz AC supply at 220 Volts.',expAs:'ভাৰতত 220 ভোল্টত 50 Hz AC সৰবৰাহ ব্যৱহাৰ হয়।'},
+    {q:'SI unit of pressure is?',as:'চাপৰ SI একক কি?',opts:['Newton','Joule','Pascal','Watt'],optsAs:['নিউটন','জুল','পাস্কেল','ৱাট'],ans:2,exp:'The SI unit of pressure is Pascal (Pa).',expAs:'চাপৰ SI একক হৈছে পাস্কেল (Pa)।'},
+  ],
+  chemistry: [
+    {q:'Atomic number of Carbon?',as:'কাৰ্বনৰ পাৰমাণৱিক সংখ্যা?',opts:['4','6','8','12'],optsAs:['৪','৬','৮','১২'],ans:1,exp:'Carbon has atomic number 6.',expAs:'কাৰ্বনৰ পাৰমাণৱিক সংখ্যা 6।'},
+    {q:'pH value of pure water?',as:'বিশুদ্ধ পানীৰ pH মান?',opts:['0','7','14','6'],optsAs:['০','৭','১৪','৬'],ans:1,exp:'Pure water has a neutral pH of 7.',expAs:'বিশুদ্ধ পানীৰ pH মান নিৰপেক্ষ 7।'},
+    {q:'Which gas is released during photosynthesis?',as:'সালোক সংশ্লেষণৰ সময়ত কোনটো গেছ নিৰ্গত হয়?',opts:['CO2','N2','O2','H2'],optsAs:['CO2','N2','O2','H2'],ans:2,exp:'Plants release Oxygen (O2) during photosynthesis.',expAs:'সালোক সংশ্লেষণত উদ্ভিদে অক্সিজেন (O2) নিৰ্গত কৰে।'},
+    {q:'NaCl is the chemical formula for?',as:'NaCl কিহৰ ৰাসায়নিক সূত্ৰ?',opts:['Sugar','Baking soda','Common salt','Lime'],optsAs:['চেনি','বেকিং চোডা','সাধাৰণ নিমখ','চূণ'],ans:2,exp:'NaCl (Sodium Chloride) is common table salt.',expAs:'NaCl (ছডিয়াম ক্লৰাইড) সাধাৰণ নিমখ।'},
+    {q:'Rusting of iron is a?',as:'লোহাৰ মামৰ পৰা কি পৰিৱৰ্তন হয়?',opts:['Physical change','Chemical change','Nuclear change','Reversible change'],optsAs:['ভৌতিক পৰিৱৰ্তন','ৰাসায়নিক পৰিৱৰ্তন','পাৰমাণৱিক পৰিৱৰ্তন','বিপৰীতমুখী পৰিৱৰ্তন'],ans:1,exp:'Rusting is a chemical change — iron reacts with oxygen and water.',expAs:'মামৰ পৰা ৰাসায়নিক পৰিৱৰ্তন হয়।'},
+  ],
+  biology: [
+    {q:'Powerhouse of the cell?',as:'কোষৰ শক্তিঘৰ কোনটো?',opts:['Nucleus','Ribosome','Mitochondria','Chloroplast'],optsAs:['নিউক্লিয়াছ','ৰাইব'জম','মাইট'কন্দ্ৰিয়া','ক্লৰ'প্লাষ্ট'],ans:2,exp:'Mitochondria produces ATP, so it is the powerhouse of the cell.',expAs:'মাইট'কন্দ্ৰিয়াই ATP উৎপন্ন কৰে, সেয়েহে ইয়াক কোষৰ শক্তিঘৰ বোলে।'},
+    {q:'How many chromosomes does a human cell have?',as:'মানৱ কোষত কিমান ক্ৰ'ম'জম আছে?',opts:['23','44','46','48'],optsAs:['২৩','৪৪','৪৬','৪৮'],ans:2,exp:'Human cells have 46 chromosomes (23 pairs).',expAs:'মানৱ কোষত 46টা ক্ৰ'ম'জম (23 যোৰ) আছে।'},
+    {q:'Universal blood donor group?',as:'সৰ্বজনীন তেজ দাতাৰ গোট?',opts:['A+','B+','AB+','O-'],optsAs:['A+','B+','AB+','O-'],ans:3,exp:'O- (O negative) is the universal donor.',expAs:'O- (O ঋণাত্মক) সৰ্বজনীন তেজ দাতা।'},
+    {q:'Which vitamin is produced by sunlight?',as:'সূৰ্যৰ পোহৰৰ পৰা কোনটো ভিটামিন উৎপন্ন হয়?',opts:['Vitamin A','Vitamin B','Vitamin C','Vitamin D'],optsAs:['ভিটামিন A','ভিটামিন B','ভিটামিন C','ভিটামিন D'],ans:3,exp:'Vitamin D is synthesized by skin when exposed to sunlight.',expAs:'সূৰ্যৰ পোহৰত ছালে ভিটামিন D সংশ্লেষণ কৰে।'},
+    {q:'Insulin is produced by which organ?',as:'ইনছুলিন কোনটো অংগই উৎপন্ন কৰে?',opts:['Liver','Kidney','Pancreas','Spleen'],optsAs:['যকৃত','বৃক্ক','অগ্ন্যাশয়','প্লীহা'],ans:2,exp:'Insulin is produced by the beta cells of the Pancreas.',expAs:'ইনছুলিন অগ্ন্যাশয়ৰ বিটা কোষে উৎপন্ন কৰে।'},
+  ],
+  economics: [
+    {q:'What is Inflation?',as:'মুদ্ৰাস্ফীতি মানে কি?',opts:['Decrease in prices','Increase in currency value','General rise in prices','Fall in GDP'],optsAs:['মূল্য হ্ৰাস','মুদ্ৰাৰ মান বৃদ্ধি','সামগ্ৰিক মূল্য বৃদ্ধি','GDP হ্ৰাস'],ans:2,exp:'Inflation is the general increase in prices over time.',expAs:'মুদ্ৰাস্ফীতি হৈছে সময়ৰ লগে লগে মূল্যৰ সামগ্ৰিক বৃদ্ধি।'},
+    {q:'RBI stands for?',as:'RBI মানে কি?',opts:['Reserve Bank of India','Regional Bank of India','Rural Bank of India','Regulatory Bank'],optsAs:['ভাৰতীয় ৰিজাৰ্ভ বেংক','আঞ্চলিক বেংক','গ্ৰাম্য বেংক','নিয়ন্ত্ৰণ বেংক'],ans:0,exp:"RBI = Reserve Bank of India — India's central bank.",expAs:'RBI = Reserve Bank of India — ভাৰতৰ কেন্দ্ৰীয় বেংক।'},
+    {q:'Budget Deficit means?',as:'বাজেট ঘাটি মানে কি?',opts:['Revenue > Expenditure','Expenditure > Revenue','Revenue = Expenditure','No budget'],optsAs:['ৰাজহ > ব্যয়','ব্যয় > ৰাজহ','ৰাজহ = ব্যয়','বাজেট নাই'],ans:1,exp:'Budget Deficit occurs when expenditure exceeds revenue.',expAs:'বাজেট ঘাটি হয় যেতিয়া ব্যয় ৰাজহতকৈ বেছি হয়।'},
+    {q:'Agriculture belongs to which sector?',as:'কৃষি কোনটো খণ্ডত পৰে?',opts:['Secondary','Tertiary','Primary','Quaternary'],optsAs:['দ্বিতীয়','তৃতীয়','প্ৰাথমিক','চতুৰ্থ'],ans:2,exp:'Agriculture belongs to the Primary sector.',expAs:'কৃষি প্ৰাথমিক খণ্ডত পৰে।'},
+    {q:'GST stands for?',as:'GST মানে কি?',opts:['General Sales Tax','Goods and Services Tax','Government Supply Tax','Gross Sales Tax'],optsAs:['সাধাৰণ বিক্ৰয় কৰ','সামগ্ৰী আৰু সেৱা কৰ','চৰকাৰী যোগান কৰ','মুঠ বিক্ৰয় কৰ'],ans:1,exp:'GST = Goods and Services Tax.',expAs:'GST = Goods and Services Tax (সামগ্ৰী আৰু সেৱা কৰ)।'},
+  ],
+  polsci: [
+    {q:'How many articles in the Indian Constitution?',as:'ভাৰতীয় সংবিধানত কিমানটা অনুচ্ছেদ আছে?',opts:['395','448','500','250'],optsAs:['৩৯৫','৪৪৮','৫০০','২৫০'],ans:1,exp:'The Indian Constitution now has 448 articles.',expAs:'ভাৰতীয় সংবিধানত এতিয়া 448টা অনুচ্ছেদ আছে।'},
+    {q:'Which Article abolishes untouchability?',as:'কোনটো অনুচ্ছেদে অস্পৃশ্যতা বিলোপ কৰে?',opts:['Article 14','Article 17','Article 21','Article 25'],optsAs:['14 নং অনুচ্ছেদ','17 নং অনুচ্ছেদ','21 নং অনুচ্ছেদ','25 নং অনুচ্ছেদ'],ans:1,exp:'Article 17 abolishes untouchability.',expAs:'17 নং অনুচ্ছেদে অস্পৃশ্যতা বিলোপ কৰে।'},
+    {q:'Supreme Court of India is in?',as:'ভাৰতৰ উচ্চতম ন্যায়ালয় কত?',opts:['Mumbai','Kolkata','New Delhi','Chennai'],optsAs:['মুম্বাই','কলকাতা','নতুন দিল্লী','চেন্নাই'],ans:2,exp:'The Supreme Court is in New Delhi.',expAs:'উচ্চতম ন্যায়ালয় নতুন দিল্লীত।'},
+    {q:'Panchayati Raj is related to?',as:'পঞ্চায়তী ৰাজ কিহৰ সৈতে সম্পৰ্কিত?',opts:['Central Govt','State Govt','Local Self Govt','Judicial System'],optsAs:['কেন্দ্ৰীয় চৰকাৰ','ৰাজ্য চৰকাৰ','স্থানীয় স্বায়ত্তশাসন','বিচাৰ ব্যৱস্থা'],ans:2,exp:'Panchayati Raj is a system of rural Local Self-Government.',expAs:'পঞ্চায়তী ৰাজ গ্ৰামাঞ্চলৰ স্থানীয় স্বায়ত্তশাসন ব্যৱস্থা।'},
+    {q:'Indian Parliament consists of how many houses?',as:'ভাৰতীয় সংসদত কিমানটা সদন আছে?',opts:['1','2','3','4'],optsAs:['১','২','৩','৪'],ans:1,exp:'Indian Parliament has 2 houses: Lok Sabha and Rajya Sabha.',expAs:'ভাৰতীয় সংসদত 2টা সদন আছে: লোকসভা আৰু ৰাজ্যসভা।'},
+  ],
+  assam_gk: [
+    {q:'Assam Accord was signed in which year?',as:'অসম চুক্তি কোনটো বছৰত স্বাক্ষৰিত হৈছিল?',opts:['1980','1983','1985','1987'],optsAs:['১৯৮০','১৯৮৩','১৯৮৫','১৯৮৭'],ans:2,exp:'The Assam Accord was signed on August 15, 1985.',expAs:'অসম চুক্তি 15 আগষ্ট 1985 তাৰিখে স্বাক্ষৰিত হৈছিল।'},
+    {q:'First Chief Minister of Assam?',as:'অসমৰ প্ৰথম মুখ্যমন্ত্ৰী কোন?',opts:['B.P. Chaliha','Gopinath Bordoloi','M.M. Choudhury','S.C. Singha'],optsAs:['বিমলা প্ৰসাদ চলিহা','গোপীনাথ বৰদলৈ','মহেন্দ্ৰ মোহন চৌধুৰী','শৰৎ চন্দ্ৰ সিংহ'],ans:1,exp:'Gopinath Bordoloi was the first CM of Assam (1946-1950).',expAs:'গোপীনাথ বৰদলৈ অসমৰ প্ৰথম মুখ্যমন্ত্ৰী আছিল (1946-1950)।'},
+    {q:'Which district is known as Tea City of India?',as:'কোনটো জিলাক ভাৰতৰ চাহ চহৰ বোলা হয়?',opts:['Jorhat','Dibrugarh','Tinsukia','Sibsagar'],optsAs:['যোৰহাট','ডিব্ৰুগড়','তিনিচুকীয়া','শিৱসাগৰ'],ans:1,exp:'Dibrugarh is the Tea City of India.',expAs:'ডিব্ৰুগড়ক ভাৰতৰ চাহ চহৰ বোলা হয়।'},
+    {q:'APSC stands for?',as:'APSC মানে কি?',opts:['Assam Police Service Commission','Assam Public Service Commission','All Persons Service Committee','Assam Primary School Commission'],optsAs:['অসম আৰক্ষী সেৱা আয়োগ','অসম লোকসেৱা আয়োগ','সকলো ব্যক্তি সেৱা সমিতি','অসম প্ৰাথমিক বিদ্যালয় আয়োগ'],ans:1,exp:'APSC = Assam Public Service Commission.',expAs:'APSC = অসম লোকসেৱা আয়োগ।'},
+    {q:'Largest district of Assam by area?',as:'মাটিকালিৰ দিশৰ পৰা অসমৰ সৰ্ববৃহৎ জিলা?',opts:['Karbi Anglong','Sonitpur','Lakhimpur','Cachar'],optsAs:['কাৰ্বি আংলং','শোণিতপুৰ','লখিমপুৰ','কাছাৰ'],ans:0,exp:'Karbi Anglong is the largest district of Assam by area.',expAs:'কাৰ্বি আংলং মাটিকালিৰ দিশৰ পৰা অসমৰ সৰ্ববৃহৎ জিলা।'},
+  ],
+  current: [
+    {q:'Which country hosted G20 Summit in 2023?',as:'2023 চনত G20 সন্মিলন কোনখন দেশে আয়োজন কৰিছিল?',opts:['USA','China','India','Brazil'],optsAs:['আমেৰিকা','চীন','ভাৰত','ব্ৰাজিল'],ans:2,exp:'India hosted the G20 Summit in New Delhi in September 2023.',expAs:'ভাৰতে 2023 চনৰ ছেপ্টেম্বৰত নতুন দিল্লীত G20 সন্মিলন আয়োজন কৰিছিল।'},
+    {q:'SLRC in Assam stands for?',as:'অসমত SLRC মানে কি?',opts:['State Level Recruitment Commission','State Labour Relations Council','Senior Level Research Centre','State Licensing & Registration Commission'],optsAs:['ৰাজ্য স্তৰৰ নিয়োগ আয়োগ','ৰাজ্য শ্ৰম সম্পৰ্ক পৰিষদ','জ্যেষ্ঠ স্তৰৰ গৱেষণা কেন্দ্ৰ','ৰাজ্য লাইচেন্স আয়োগ'],ans:0,exp:'SLRC = State Level Recruitment Commission, conducts Grade III & IV exams.',expAs:'SLRC = ৰাজ্য স্তৰৰ নিয়োগ আয়োগ, গ্ৰেড III আৰু IV পৰীক্ষা পৰিচালনা কৰে।'},
+    {q:'SEBA conducts exams for which classes?',as:'SEBA কোনটো শ্ৰেণীৰ পৰীক্ষা পৰিচালনা কৰে?',opts:['Class 9 & 11','Class 10 & 12','Class 8 & 10','Class 10 only'],optsAs:['নৱম আৰু একাদশ','দশম আৰু দ্বাদশ','অষ্টম আৰু দশম','কেৱল দশম'],ans:1,exp:'SEBA conducts HSLC (Class 10) and AHM (Class 12) exams.',expAs:'SEBA-এ HSLC (দশম) আৰু AHM (দ্বাদশ) পৰীক্ষা পৰিচালনা কৰে।'},
+    {q:'PM Kisan Samman Nidhi provides how much per year?',as:'PM কিষাণ সন্মান নিধিত বছৰি কিমান টকা দিয়া হয়?',opts:['₹3000','₹4000','₹6000','₹8000'],optsAs:['₹3000','₹4000','₹6000','₹8000'],ans:2,exp:'PM Kisan provides ₹6000 per year to farmers.',expAs:'PM কিষাণে কৃষকসকলক বছৰি ₹6000 প্ৰদান কৰে।'},
+    {q:'One District One Product scheme promotes?',as:'"এক জিলা এক সামগ্ৰী" আঁচনিয়ে কি প্ৰসাৰ কৰে?',opts:['Tourism','Local products','Education','Healthcare'],optsAs:['পৰ্যটন','স্থানীয় সামগ্ৰী','শিক্ষা','স্বাস্থ্যসেৱা'],ans:1,exp:'ODOP scheme promotes local/traditional products from each district.',expAs:'ODOP আঁচনিয়ে প্ৰতিটো জিলাৰ স্থানীয় সামগ্ৰীৰ প্ৰসাৰ ঘটায়।'},
+  ],
+  aptitude: [
+    {q:'A train travels 360 km in 4 hours. Speed?',as:'এটা ৰেলগাড়ী 4 ঘণ্টাত 360 km যায়। গতিবেগ?',opts:['80 km/h','90 km/h','100 km/h','70 km/h'],optsAs:['80 km/h','90 km/h','100 km/h','70 km/h'],ans:1,exp:'Speed = 360/4 = 90 km/h',expAs:'গতিবেগ = 360/4 = 90 km/h'},
+    {q:'25% of 200?',as:'200ৰ 25%?',opts:['40','50','60','25'],optsAs:['৪০','৫০','৬০','২৫'],ans:1,exp:'25% of 200 = 50',expAs:'200ৰ 25% = 50'},
+    {q:'Simple interest on ₹1000 at 5% for 2 years?',as:'₹1000ত 5% সুদত 2 বছৰৰ সৰল সুদ?',opts:['₹50','₹100','₹150','₹200'],optsAs:['₹50','₹100','₹150','₹200'],ans:1,exp:'SI = P×R×T/100 = 1000×5×2/100 = ₹100',expAs:'সৰল সুদ = 1000×5×2/100 = ₹100'},
+    {q:'Average of 10, 20, 30, 40, 50?',as:'10, 20, 30, 40, 50ৰ গড়?',opts:['25','30','35','40'],optsAs:['২৫','৩০','৩৫','৪০'],ans:1,exp:'Average = 150/5 = 30',expAs:'গড় = 150/5 = 30'},
+    {q:'If profit% is 25% and CP is ₹80, SP is?',as:'যদি লাভ 25% আৰু ক্ৰয় মূল্য ₹80, বিক্ৰয় মূল্য?',opts:['₹90','₹95','₹100','₹110'],optsAs:['₹90','₹95','₹100','₹110'],ans:2,exp:'SP = CP × (1 + profit/100) = 80 × 1.25 = ₹100',expAs:'বিক্ৰয় মূল্য = 80 × 1.25 = ₹100'},
+  ],
+  reasoning: [
+    {q:'Find the odd one out: Apple, Mango, Carrot, Banana',as:'বিজোৰটো বিচাৰি উলিয়াওক: Apple, Mango, Carrot, Banana',opts:['Apple','Mango','Carrot','Banana'],optsAs:['আপেল','আম','গাজৰ','কল'],ans:2,exp:'Carrot is a vegetable; all others are fruits.',expAs:'গাজৰ এটা পাচলি; আনবোৰ ফল।'},
+    {q:'What comes next: 2, 4, 8, 16, __?',as:'পৰৱৰ্তী সংখ্যা কি: 2, 4, 8, 16, __?',opts:['24','32','28','36'],optsAs:['২৪','৩২','২৮','৩৬'],ans:1,exp:'Each number doubles: 16×2 = 32',expAs:'প্ৰতিটো সংখ্যা দ্বিগুণ: 16×2 = 32'},
+    {q:'If CAT = 24, then DOG = ?',as:'যদি CAT = 24, তেন্তে DOG = ?',opts:['22','26','28','30'],optsAs:['২২','২৬','২৮','৩০'],ans:1,exp:'D=4, O=15, G=7. Sum = 26',expAs:'D=4, O=15, G=7. যোগফল = 26'},
+    {q:'Monday is to Week as January is to?',as:'Monday যেনেকৈ Week, January তেনেকৈ কিহৰ?',opts:['Day','Season','Year','Month'],optsAs:['দিন','ঋতু','বছৰ','মাহ'],ans:2,exp:'Monday is first of week; January is first of year.',expAs:'Monday সপ্তাহৰ প্ৰথম; January বছৰৰ প্ৰথম।'},
+    {q:'Which number completes: 3, 6, 9, 12, __?',as:'কোনটো সংখ্যাই সম্পূৰ্ণ কৰে: 3, 6, 9, 12, __?',opts:['14','15','16','18'],optsAs:['১৪','১৫','১৬','১৮'],ans:1,exp:'Series adds 3 each time: 12+3=15',expAs:'প্ৰতিবাৰ 3 যোগ হয়: 12+3=15'},
+  ],
+  computer: [
+    {q:'CPU stands for?',as:'CPU মানে কি?',opts:['Central Process Unit','Central Processing Unit','Computer Processing Unit','Core Processing Unit'],optsAs:['কেন্দ্ৰীয় প্ৰক্ৰিয়া একক','কেন্দ্ৰীয় প্ৰক্ৰিয়াকৰণ একক','কম্পিউটাৰ প্ৰক্ৰিয়া একক','মূল প্ৰক্ৰিয়া একক'],ans:1,exp:'CPU = Central Processing Unit — the brain of the computer.',expAs:'CPU = কেন্দ্ৰীয় প্ৰক্ৰিয়াকৰণ একক — কম্পিউটাৰৰ মগজু।'},
+    {q:'Which is NOT an input device?',as:'কোনটো input device নহয়?',opts:['Keyboard','Mouse','Scanner','Monitor'],optsAs:['কীব'ৰ্ড','মাউছ','স্কেনাৰ','মনিটৰ'],ans:3,exp:'Monitor is an output device.',expAs:'Monitor এটা output device।'},
+    {q:'1 Kilobyte = ?',as:'1 Kilobyte = ?',opts:['1000 Bytes','1024 Bytes','512 Bytes','2048 Bytes'],optsAs:['1000 বাইট','1024 বাইট','512 বাইট','2048 বাইট'],ans:1,exp:'1 Kilobyte = 1024 Bytes.',expAs:'1 Kilobyte = 1024 Bytes।'},
+    {q:'www stands for?',as:'www মানে কি?',opts:['World Wide Web','World Web Wide','Wide World Web','Web World Wide'],optsAs:['World Wide Web','World Web Wide','Wide World Web','Web World Wide'],ans:0,exp:'www = World Wide Web.',expAs:'www = World Wide Web।'},
+    {q:'Which is an Operating System?',as:'কোনটো Operating System?',opts:['MS Word','Photoshop','Windows 11','Chrome'],optsAs:['MS Word','Photoshop','Windows 11','Chrome'],ans:2,exp:'Windows 11 is an Operating System.',expAs:'Windows 11 এটা Operating System।'},
+  ],
+};
+
+const badgesData = [
+  {id:'first',name:'First Step',nameAs:'প্ৰথম পদক্ষেপ',icon:'🌱',desc:'Complete your first quiz',descAs:'প্ৰথম কুইজ সম্পূৰ্ণ কৰক'},
+  {id:'streak3',name:'On Fire',nameAs:'জলিছে',icon:'🔥',desc:'3-day study streak',descAs:'3 দিনৰ অধ্যয়ন ধাৰা'},
+  {id:'score80',name:'Scholar',nameAs:'পণ্ডিত',icon:'📚',desc:'Score 80%+ in a quiz',descAs:'কুইজত 80%+ পাওক'},
+  {id:'century',name:'Century',nameAs:'শতক',icon:'💯',desc:'Answer 100 questions',descAs:'100টা প্ৰশ্নৰ উত্তৰ দিয়ক'},
+  {id:'perfect',name:'Perfect!',nameAs:'নিখুঁত!',icon:'⭐',desc:'Get 100% in a quiz',descAs:'কুইজত 100% পাওক'},
+  {id:'assam',name:'Assam Expert',nameAs:'অসম বিশেষজ্ঞ',icon:'🏔️',desc:'Complete all Assam GK',descAs:'সকলো অসম GK সম্পূৰ্ণ কৰক'},
+];
+
+const tipsData = [
+  {icon:'⏰',title:'Time Management',titleAs:'সময় ব্যৱস্থাপনা',tip:'In HSLC/HS exams, spend max 2 minutes per MCQ.',tipAs:'HSLC/HS পৰীক্ষাত প্ৰতিটো MCQত সৰ্বোচ্চ 2 মিনিট ব্যয় কৰক।'},
+  {icon:'📖',title:'NCERT First',titleAs:'NCERT প্ৰথমে',tip:'For Class 9-12, NCERT books are your foundation. Read them thoroughly.',tipAs:'নৱম-দ্বাদশ শ্ৰেণীৰ বাবে NCERT কিতাপ হৈছে আপোনাৰ ভিত্তি।'},
+  {icon:'🔁',title:'Revision Cycle',titleAs:'পুনৰীক্ষণ চক্ৰ',tip:'Revise within 24 hours of studying, then again after 1 week. Memory improves 80%.',tipAs:'পঢ়াৰ 24 ঘণ্টাৰ ভিতৰত পুনৰীক্ষণ কৰক, তাৰপিছত 1 সপ্তাহৰ পিছত।'},
+  {icon:'📰',title:'Current Affairs',titleAs:'বৰ্তমান বিষয়',tip:'For APSC/SLRC, read Assamese newspapers daily. Focus on Assam news.',tipAs:'APSC/SLRC-ৰ বাবে প্ৰতিদিনে অসমীয়া বাতৰি কাকত পঢ়ক।'},
+  {icon:'🎯',title:'APSC Strategy',titleAs:'APSC কৌশল',tip:'Focus on Assam-specific GK, Indian Constitution, and current affairs.',tipAs:'অসম-বিশেষ GK, ভাৰতীয় সংবিধান আৰু বৰ্তমান বিষয়ত গুৰুত্ব দিয়ক।'},
+  {icon:'💤',title:'Sleep Well',titleAs:'ভালকৈ শোওক',tip:'Sleep 7-8 hours before exam day. A rested brain performs 40% better.',tipAs:'পৰীক্ষাৰ দিনৰ আগদিনা 7-8 ঘণ্টা শোওক।'},
+  {icon:'✍️',title:'Write Practice',titleAs:'লিখন অভ্যাস',tip:'Write answers by hand during revision — it improves memory retention.',tipAs:'পুনৰীক্ষণৰ সময়ত হাতেৰে উত্তৰ লিখক।'},
+  {icon:'🧮',title:'Daily Math',titleAs:'দৈনিক গণিত',tip:'Solve at least 20 math problems daily for govt. job exams.',tipAs:'চৰকাৰী চাকৰি পৰীক্ষাৰ বাবে প্ৰতিদিনে কমেও 20টা গণিত সমস্যা সমাধান কৰক।'},
+];
+
+// ==================== STATE ====================
+let lang = 'en';
+let currentCategory = null;
+let currentSubjectId = null;
+let currentSubjectName = '';
+let currentQuestions = [];
+let currentQIdx = 0;
+let currentScore = 0;
+let answered = false;
+let results = [];
+let timerInterval = null;
+let timeLeft = 30;
+let totalAnswered = parseInt(localStorage.getItem('asp_total') || '0');
+let quizzesDone = parseInt(localStorage.getItem('asp_quizzes') || '0');
+let earnedBadges = JSON.parse(localStorage.getItem('asp_badges') || '[]');
+let streak = parseInt(localStorage.getItem('asp_streak') || '0');
+
+// ==================== LANGUAGE ====================
+function setLang(l) {
+  lang = l;
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.getElementById('btn-as').classList.toggle('active', l === 'as');
+  const d = LANG[l];
+  document.getElementById('hero-tag').textContent = d.heroTag;
+  document.getElementById('hero-title').innerHTML = d.heroTitle;
+  document.getElementById('hero-sub').textContent = d.heroSub;
+  document.getElementById('quote-text').textContent = d.quoteText;
+  document.getElementById('quote-assamese').textContent = d.quoteAs;
+  document.getElementById('choose-cat-lbl').textContent = d.chooseCat;
+  document.getElementById('cat1-name').textContent = d.cat1;
+  document.getElementById('cat1-desc').textContent = d.cat1desc;
+  document.getElementById('cat2-name').textContent = d.cat2;
+  document.getElementById('cat2-desc').textContent = d.cat2desc;
+  document.getElementById('cat3-name').textContent = d.cat3;
+  document.getElementById('cat3-desc').textContent = d.cat3desc;
+  document.getElementById('qlbl1').textContent = d.qlbl1;
+  document.getElementById('qlbl2').textContent = d.qlbl2;
+  document.getElementById('qlbl3').textContent = d.qlbl3;
+}
+
+// ==================== NAVIGATION ====================
+function goScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  updateStats();
+  if (name === 'badges') renderBadges();
+  if (name === 'tips') renderTips();
+  if (name === 'leaderboard') renderLeaderboard();
+  if (name === 'profile') renderProfile();
+}
+
+function goSubjects(cat) {
+  currentCategory = cat;
+  const catNames = {'9-10': lang === 'as' ? 'নৱম - দশম শ্ৰেণী' : 'Class 9 - 10', '11-12': lang === 'as' ? 'একাদশ - দ্বাদশ শ্ৰেণী' : 'Class 11 - 12', 'govt': lang === 'as' ? 'চৰকাৰী চাকৰি প্ৰস্তুতি' : 'Govt. Job Preparation'};
+  document.getElementById('subjects-title').textContent = catNames[cat];
+  renderSubjects(cat);
+  goScreen('subjects');
+}
+
+// ==================== SUBJECTS ====================
+function renderSubjects(cat) {
+  const grid = document.getElementById('subjects-grid');
+  grid.innerHTML = '';
+  (subjects[cat] || []).forEach(s => {
+    const div = document.createElement('div');
+    div.className = 'subj-card';
+    div.style.cssText = `border-color: ${s.color}40; background: ${s.color}0d;`;
+    div.innerHTML = `
+      <div class="subj-icon">${s.icon}</div>
+      <div class="subj-name" style="color:${s.color}">${s.name}</div>
+      <div class="subj-assamese">${s.as}</div>
+      <div class="subj-count">${(questions[s.id]||[]).length} Questions</div>
+      <div class="subj-start">Start Quiz →</div>`;
+    div.onclick = () => startQuiz(s.id, s.name, s.as);
+    grid.appendChild(div);
+  });
+}
+
+// ==================== QUIZ ====================
+function startQuiz(subjId, name, nameAs) {
+  currentSubjectId = subjId;
+  currentSubjectName = name;
+  const pool = (questions[subjId] || []).slice();
+  currentQuestions = pool.sort(() => Math.random() - 0.5).slice(0, 5);
+  currentQIdx = 0; currentScore = 0; answered = false; results = [];
+  goScreen('quiz');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  if (currentQIdx >= currentQuestions.length) return;
+  const q = currentQuestions[currentQIdx];
+  document.getElementById('q-num').textContent = currentQIdx + 1;
+  document.getElementById('q-total').textContent = currentQuestions.length;
+  document.getElementById('quiz-progress').style.width = ((currentQIdx / currentQuestions.length) * 100) + '%';
+  document.getElementById('quiz-subject-tag').textContent = currentSubjectName;
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('q-assamese').textContent = lang === 'as' ? '' : q.as;
+  if (lang === 'as') { document.getElementById('q-text').textContent = q.as; }
+  document.getElementById('explanation-box').style.display = 'none';
+  document.getElementById('action-area').style.display = 'none';
+
+  const wrap = document.getElementById('options-wrap');
+  wrap.innerHTML = '';
+  const opts = lang === 'as' ? q.optsAs : q.opts;
+  opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.innerHTML = `<span class="opt-label">${String.fromCharCode(65+i)}</span>${opt}`;
+    btn.onclick = () => handleAnswer(i);
+    wrap.appendChild(btn);
+  });
+
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = 30;
+  updateTimer();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimer();
+    if (timeLeft <= 0) { clearInterval(timerInterval); handleAnswer(-1); }
+  }, 1000);
+}
+
+function updateTimer() {
+  document.getElementById('timer-num').textContent = timeLeft;
+  const circle = document.getElementById('timer-circle');
+  const r = 19, circ = 2 * Math.PI * r;
+  const offset = circ * (1 - timeLeft / 30);
+  circle.style.strokeDashoffset = offset;
+  circle.style.stroke = timeLeft > 10 ? '#2ecc71' : '#e74c3c';
+  document.getElementById('timer-num').style.color = timeLeft > 10 ? '#2ecc71' : '#e74c3c';
+}
+
+function handleAnswer(idx) {
+  if (answered) return;
+  clearInterval(timerInterval);
+  answered = true;
+  const q = currentQuestions[currentQIdx];
+  const correct = idx === q.ans;
+  if (correct) currentScore++;
+  totalAnswered++;
+  localStorage.setItem('asp_total', totalAnswered);
+  results.push({ correct, selected: idx, correctIdx: q.ans });
+
+  const btns = document.querySelectorAll('.opt-btn');
+  btns.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.ans) btn.classList.add('correct');
+    else if (i === idx && !correct) btn.classList.add('wrong');
+  });
+
+  document.getElementById('action-area').style.display = 'flex';
+  const nextBtn = document.getElementById('next-btn');
+  nextBtn.textContent = currentQIdx + 1 < currentQuestions.length ? 'Next Question →' : (lang === 'as' ? 'ফলাফল চাওক 🎯' : 'See Results 🎯');
+}
+
+function showExplanation() {
+  const q = currentQuestions[currentQIdx];
+  document.getElementById('exp-text').textContent = lang === 'as' ? q.expAs : q.exp;
+  document.getElementById('exp-assamese').textContent = lang === 'as' ? '' : q.expAs;
+  document.getElementById('explanation-box').style.display = 'block';
+  document.getElementById('show-exp-btn').style.display = 'none';
+}
+
+function nextQuestion() {
+  if (currentQIdx + 1 < currentQuestions.length) {
+    currentQIdx++;
+    answered = false;
+    document.getElementById('show-exp-btn').style.display = 'block';
+    renderQuestion();
+  } else {
+    finishQuiz();
+  }
+}
+
+function finishQuiz() {
+  quizzesDone++;
+  localStorage.setItem('asp_quizzes', quizzesDone);
+  const pct = Math.round((currentScore / currentQuestions.length) * 100);
+  checkBadges(pct);
+  renderResult(pct);
+  goScreen('result');
+}
+
+function retryQuiz() { startQuiz(currentSubjectId, currentSubjectName, ''); }
+
+// ==================== RESULT ====================
+function renderResult(pct) {
+  const emoji = pct === 100 ? '🏆' : pct >= 80 ? '🌟' : pct >= 60 ? '👍' : pct >= 40 ? '📚' : '💪';
+  const color = pct >= 80 ? '#2ecc71' : pct >= 50 ? '#f5a623' : '#e74c3c';
+  const msg = pct === 100 ? 'Perfect Score! সম্পূৰ্ণ নম্বৰ! 🎉' : pct >= 80 ? 'Outstanding! অসাধাৰণ! 🔥' : pct >= 60 ? 'Good Job! ভাল কাম! 👏' : pct >= 40 ? 'Keep Practicing! অনুশীলন কৰক! 💪' : "Don't give up! হাৰ নামানিব! 📖";
+  document.getElementById('result-emoji').textContent = emoji;
+  document.getElementById('result-pct').textContent = pct + '%';
+  document.getElementById('result-pct').style.color = color;
+  document.getElementById('result-label').textContent = `${results.filter(r=>r.correct).length} / ${currentQuestions.length} Correct`;
+  document.getElementById('result-msg').textContent = msg;
+  document.getElementById('result-msg').style.color = color;
+  document.getElementById('result-badge').style.borderColor = color + '60';
+
+  const rev = document.getElementById('review-items');
+  rev.innerHTML = '';
+  currentQuestions.forEach((q, i) => {
+    const d = document.createElement('div');
+    d.className = 'review-item';
+    const correctText = lang === 'as' ? q.optsAs[q.ans] : q.opts[q.ans];
+    const qText = lang === 'as' ? q.as : q.q;
+    d.innerHTML = `<div class="review-icon">${results[i]?.correct ? '✅' : '❌'}</div>
+      <div><div class="review-q">${qText}</div>${!results[i]?.correct ? `<div class="review-correct">✓ ${correctText}</div>` : ''}</div>`;
+    rev.appendChild(d);
+  });
+}
+
+// ==================== BADGES ====================
+function checkBadges(pct) {
+  let newBadge = null;
+  if (!earnedBadges.includes('first') && quizzesDone >= 1) { earnedBadges.push('first'); newBadge = badgesData[0]; }
+  if (!earnedBadges.includes('score80') && pct >= 80) { earnedBadges.push('score80'); newBadge = badgesData[2]; }
+  if (!earnedBadges.includes('perfect') && pct === 100) { earnedBadges.push('perfect'); newBadge = badgesData[4]; }
+  if (!earnedBadges.includes('century') && totalAnswered >= 100) { earnedBadges.push('century'); newBadge = badgesData[3]; }
+  localStorage.setItem('asp_badges', JSON.stringify(earnedBadges));
+  if (newBadge) showBadgePopup(newBadge);
+}
+
+function showBadgePopup(badge) {
+  document.getElementById('popup-icon').textContent = badge.icon;
+  document.getElementById('popup-desc').textContent = `${badge.name} — ${badge.desc}\n${badge.nameAs} — ${badge.descAs}`;
+  document.getElementById('badge-popup').style.display = 'flex';
+}
+
+function closePopup() {
+  document.getElementById('badge-popup').style.display = 'none';
+}
+
+function renderBadges() {
+  const grid = document.getElementById('badges-grid');
+  grid.innerHTML = '';
+  badgesData.forEach(b => {
+    const earned = earnedBadges.includes(b.id);
+    const div = document.createElement('div');
+    div.className = 'badge-card';
+    div.style.borderColor = earned ? '#f5a623' : '#2a2a2a';
+    div.style.opacity = earned ? '1' : '0.45';
+    div.innerHTML = `<div class="badge-icon">${earned ? b.icon : '🔒'}</div>
+      <div class="badge-name" style="color:${earned?'#f5a623':'#667'}">${lang==='as'?b.nameAs:b.name}</div>
+      <div class="badge-desc">${lang==='as'?b.descAs:b.desc}</div>
+      ${earned ? '<div class="badge-earned">✓ Earned!</div>' : ''}`;
+    grid.appendChild(div);
+  });
+}
+
+// ==================== TIPS ====================
+function renderTips() {
+  const list = document.getElementById('tips-list');
+  list.innerHTML = '';
+  tipsData.forEach(t => {
+    const div = document.createElement('div');
+    div.className = 'tip-card';
+    div.innerHTML = `<div class="tip-icon">${t.icon}</div>
+      <div><div class="tip-title">${lang==='as'?t.titleAs:t.title}</div>
+      <div class="tip-text">${lang==='as'?t.tipAs:t.tip}</div>
+      <div class="tip-assamese">${lang==='as'?t.tip:t.tipAs}</div></div>`;
+    list.appendChild(div);
+  });
+}
+
+// ==================== LEADERBOARD ====================
+function renderLeaderboard() {
+  const list = document.getElementById('lb-list');
+  list.innerHTML = '';
+  const myScore = quizzesDone * 200 + totalAnswered * 10;
+  const players = [
+    {rank:1,name:'Priya Das',score:2850,badges:5,icon:'🥇'},
+    {rank:2,name:'Rahul Bora',score:2640,badges:4,icon:'🥈'},
+    {rank:3,name:'Anita Kalita',score:2310,badges:4,icon:'🥉'},
+    {rank:4,name:'Bikash Saikia',score:2100,badges:3,icon:'#4'},
+    {rank:5,name:'Deepa Gogoi',score:1980,badges:3,icon:'#5'},
+    {rank:6,name:lang==='as'?'আপুনি':'You',score:myScore,badges:earnedBadges.length,icon:'⭐',isYou:true},
+  ].sort((a,b)=>b.score-a.score);
+  players.forEach((p,i) => {
+    const div = document.createElement('div');
+    div.className = 'lb-item';
+    if (p.isYou) { div.style.borderColor = '#e63329'; div.style.background = 'rgba(230,51,41,0.08)'; }
+    div.innerHTML = `<div class="lb-rank">${['🥇','🥈','🥉','#4','#5','#6','⭐'][i] || '#' + (i+1)}</div>
+      <div><div class="lb-name" style="${p.isYou?'color:var(--red)':''}">${p.name}${p.isYou?' ★':''}</div>
+      <div class="lb-sub">🎖️ ${p.badges} badges</div></div>
+      <div class="lb-score">${p.score}</div>`;
+    list.appendChild(div);
+  });
+}
+
+// ==================== PROFILE ====================
+function renderProfile() {
+  document.getElementById('p-q').textContent = totalAnswered;
+  document.getElementById('p-quiz').textContent = quizzesDone;
+  document.getElementById('p-badge').textContent = earnedBadges.length;
+}
+
+function resetProgress() {
+  if (confirm('Reset all progress? / সকলো অগ্ৰগতি ৰিছেট কৰিবনে?')) {
+    localStorage.clear();
+    totalAnswered = 0; quizzesDone = 0; earnedBadges = []; streak = 0;
+    updateStats();
+    goScreen('home');
+  }
+}
+
+// ==================== STATS ====================
+function updateStats() {
+  document.getElementById('stat-q').textContent = totalAnswered;
+  document.getElementById('stat-quiz').textContent = quizzesDone;
+  document.getElementById('stat-badge').textContent = earnedBadges.length;
+  document.getElementById('streak-num').textContent = streak;
+}
+
+// ==================== INIT ====================
+updateStats();
+</script>
+</body>
+</html>
